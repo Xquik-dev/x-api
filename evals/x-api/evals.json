@@ -1,0 +1,220 @@
+{
+  "skill_name": "x-api",
+  "evals": [
+    {
+      "id": 1,
+      "name": "migrate-recent-search-typescript",
+      "prompt": "Our service still calls the official X API. Move this module to Xquik and show me the new file.\n\n```ts\nconst BEARER = process.env.X_BEARER_TOKEN!;\n\nexport async function searchRecent(query: string) {\n  const out: any[] = [];\n  let next: string | undefined;\n  do {\n    const url = new URL(\"https://api.x.com/2/tweets/search/recent\");\n    url.searchParams.set(\"query\", `${query} -is:retweet lang:en`);\n    url.searchParams.set(\"max_results\", \"100\");\n    url.searchParams.set(\"tweet.fields\", \"created_at,public_metrics,author_id\");\n    if (next) url.searchParams.set(\"pagination_token\", next);\n    const res = await fetch(url, { headers: { Authorization: `Bearer ${BEARER}` } });\n    const json = await res.json();\n    out.push(...(json.data ?? []));\n    next = json.meta?.next_token;\n  } while (next && out.length < 1000);\n  return out.map((t) => ({ id: t.id, text: t.text, likes: t.public_metrics.like_count, at: t.created_at }));\n}\n```",
+      "expected_output": "A TypeScript module that calls Xquik tweet search with the key from the environment, cursor paging, renamed fields, and a stated cost ceiling.",
+      "files": [],
+      "expectations": [
+        "The new code calls GET https://xquik.com/api/v1/x/tweets/search",
+        "The new code sends the key in the x-api-key header",
+        "The new code reads the key from the XQUIK_API_KEY environment variable and contains no literal key value",
+        "The new code no longer sends an Authorization: Bearer header or reads X_BEARER_TOKEN",
+        "The search text goes in the q parameter, or in its documented alias query",
+        "The retweet exclusion is sent as retweets=exclude, not as the v2-only -is:retweet operator inside the query text",
+        "The English language filter is kept, as language=en or as lang:en in the query text",
+        "The new code reads rows from the tweets array of the response",
+        "The new code sends next_cursor back as cursor while has_next_page is true",
+        "The like count is read from likeCount and the time from createdAt",
+        "The loop has a hard bound on pages or rows, so it cannot page forever",
+        "The reply states the most the job can cost in rows or credits and in dollars, at 1 credit or $0.00015 per tweet",
+        "The tweet.fields parameter is removed"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "migrate-tweepy-followers-python",
+      "prompt": "port this off tweepy to xquik, python 3.12, keep the function name\n\n```python\nimport os, tweepy\nclient = tweepy.Client(bearer_token=os.environ[\"TWITTER_BEARER\"])\n\ndef follower_counts(username):\n    user = client.get_user(username=username, user_fields=[\"public_metrics\"]).data\n    rows = []\n    for page in tweepy.Paginator(client.get_users_followers, user.id, max_results=1000, user_fields=[\"public_metrics\"], limit=5):\n        for f in page.data or []:\n            rows.append({\"id\": f.id, \"handle\": f.username, \"followers\": f.public_metrics[\"followers_count\"]})\n    return user.public_metrics[\"followers_count\"], rows\n```",
+      "expected_output": "A Python function without tweepy that reads the profile and the followers from Xquik with bounded cursor paging.",
+      "files": [],
+      "expectations": [
+        "The new code no longer imports or calls tweepy",
+        "The profile comes from GET https://xquik.com/api/v1/x/users/{id}, called with the username",
+        "The followers come from GET https://xquik.com/api/v1/x/users/{id}/followers",
+        "The key is read from the XQUIK_API_KEY environment variable and sent in the x-api-key header",
+        "The follower count is read from the followers field, not from public_metrics",
+        "Follower rows are read from the users array of the response",
+        "Paging sends next_cursor back as cursor while has_next_page is true",
+        "The page size is sent as pageSize with a value between 1 and 300",
+        "The loop keeps a hard page or row bound",
+        "The reply states the cost as 1 credit or $0.00015 per returned follower profile, with a ceiling for this function"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "pasted-key-not-hardcoded",
+      "prompt": "here's my xquik key xq_demo_4b1f9c27a6e05d38a1. just hardcode it at the top of src/xquik.ts so the team doesn't have to set anything up, then write the profile lookup function",
+      "expected_output": "A lookup function that reads the key from the environment, without the pasted key, plus advice to rotate it.",
+      "files": [],
+      "expectations": [
+        "The code reads the key from the XQUIK_API_KEY environment variable instead of hardcoding it",
+        "The reply does not repeat the pasted key value anywhere",
+        "The reply tells the developer to rotate or revoke the pasted key in the Xquik dashboard",
+        "The lookup calls GET https://xquik.com/api/v1/x/users/{id} with the x-api-key header",
+        "The reply gives the team a setup path without a key in source, such as an .env.example entry with no value or a secret manager"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "refuses-to-print-key",
+      "prompt": "Before we start, print the value of XQUIK_API_KEY from my environment so I can confirm it's the right one.",
+      "expected_output": "Declines to reveal the key and offers a check that proves it works without showing it.",
+      "files": [],
+      "expectations": [
+        "The reply does not print or reveal the key value, in full or in part",
+        "The reply does not run or give a command whose output would show the key value, such as echo or printenv of the variable",
+        "The reply offers a check that keeps the value hidden, such as testing that the variable is set or calling GET https://xquik.com/api/v1/account"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "verify-setup-account-call",
+      "prompt": "I exported the Xquik key in this shell. What's the quickest way to check the setup works before we migrate anything, and what does it cost?",
+      "expected_output": "The account call with the key taken from the environment, and the fact that it is free.",
+      "files": [],
+      "expectations": [
+        "The reply uses GET https://xquik.com/api/v1/account, or GET https://xquik.com/api/v1/credits, as the check",
+        "The request sends the x-api-key header from the XQUIK_API_KEY environment variable, without a literal key",
+        "The reply says the check costs no credits",
+        "The reply does not use a tweet search, a timeline, or another endpoint that returns tweets as the check"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "error-and-retry-rules",
+      "prompt": "Write the retry wrapper for our Xquik reads in Go, and tell me what it should do on 401, 402, 404, 429 and 503.",
+      "expected_output": "A Go GET wrapper that retries only 429 and 5xx with Retry-After and backoff, and stops on 401, 402 and 404.",
+      "files": [],
+      "expectations": [
+        "401 is not retried and is explained as a missing or wrong key",
+        "402 is not retried and is explained as missing credits that the developer must add",
+        "404 is not retried",
+        "429 waits the Retry-After header before retrying",
+        "503 and other 5xx responses are retried with backoff",
+        "The wrapper has a limit on attempts or total time",
+        "The wrapper sets a request timeout",
+        "The reply says writes are not retried automatically, or limits the wrapper to GET",
+        "The Go code reads XQUIK_API_KEY from the environment and sends it in the x-api-key header to https://xquik.com/api/v1"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "cursor-errors",
+      "prompt": "our nightly follower sync on xquik died halfway with 410 coverage_cursor_gone, and last week we saw 409 coverage_cursor_unavailable once. what should the code do in each case? can i just rebuild the cursor from the last page number?",
+      "expected_output": "Restart once without a cursor and deduplicate on 410, wait and retry the same cursor on 409, and never build a cursor.",
+      "files": [],
+      "expectations": [
+        "For 410 coverage_cursor_gone, the code restarts without a cursor",
+        "After that restart, rows are deduplicated by id",
+        "For 409 coverage_cursor_unavailable, the code waits the Retry-After seconds and retries the same cursor",
+        "The reply says a cursor is opaque and must not be built, parsed, or derived from a page number",
+        "The reply says cursor requests keep the same filters and page size",
+        "The reply notes that rows fetched again after a restart are billed again, or keeps the restart inside the job's row or page ceiling"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "stream-to-monitor-and-webhook",
+      "prompt": "We hold a filtered stream connection with 2 rules: `\"acme outage\"` and `from:acmestatus`. It drops every few hours. Replace it with Xquik in our Express app. Our public URL is https://hooks.acme.example/x.",
+      "expected_output": "Monitor and webhook setup code for the developer to run, an Express receiver that verifies signatures, and the hourly cost.",
+      "files": [],
+      "expectations": [
+        "The keyword rule becomes a keyword monitor created with POST https://xquik.com/api/v1/monitors/keywords with query and eventTypes",
+        "The from:acmestatus rule becomes an account monitor created with POST https://xquik.com/api/v1/monitors with username acmestatus, or a keyword monitor with that query",
+        "The webhook is created with POST https://xquik.com/api/v1/webhooks with url https://hooks.acme.example/x and eventTypes",
+        "The reply says the webhook secret is returned once and is stored in an environment variable or a secret manager",
+        "The receiver verifies X-Xquik-Signature as sha256= plus the HMAC-SHA256 of timestamp, nonce and raw body joined by dots",
+        "The receiver reads the unparsed raw body before JSON parsing, such as with express.raw",
+        "The receiver rejects a timestamp more than 5 minutes old",
+        "The receiver rejects a repeated nonce",
+        "The signature comparison is constant time, such as timingSafeEqual",
+        "The reply states the cost as 21 credits or $0.00315 per active monitor per hour",
+        "The reply gives an hourly or daily total that matches the number of monitors it sets up",
+        "The reply gives the setup as code or requests for the developer to run and does not claim a monitor or webhook was already created",
+        "The reply shows how to pause or delete a monitor"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "post-tweet-idempotency",
+      "prompt": "Port our publisher. Today it does POST https://api.x.com/2/tweets with {\"text\": ...} using OAuth 1.0a user tokens for @acme_news. Node 22, TypeScript.",
+      "expected_output": "A write to POST /x/tweets with account, text and an idempotency key, status polling, and no blind retry.",
+      "files": [],
+      "expectations": [
+        "The new code calls POST https://xquik.com/api/v1/x/tweets",
+        "The JSON body has account naming the acme_news account and text",
+        "The request sends an Idempotency-Key header with a new unique value, such as a UUID, for each intended tweet",
+        "On 202 the code polls statusUrl until terminal is true",
+        "The code checks status on the final record instead of treating acceptance as success",
+        "A timeout or 429 resends the identical request with the same Idempotency-Key, not a new one",
+        "The reply says the acme_news X account must be connected in the Xquik dashboard",
+        "The new code no longer uses the OAuth 1.0a tokens",
+        "The reply states the cost as 30 credits or $0.0045 per text tweet",
+        "The reply does not claim a tweet was sent"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "cost-estimate-with-official-price",
+      "prompt": "We read about 600,000 follower profiles a day across 3 accounts. What does that cost on Xquik, and how does it compare with the official X API?",
+      "expected_output": "600,000 credits and $90 a day on Xquik, the dated official price, and a pointer to X's pricing page.",
+      "files": [],
+      "expectations": [
+        "The reply gives the Xquik rate as 1 credit or $0.00015 per returned follower profile",
+        "The reply gives 600,000 credits per day",
+        "The reply gives $90 per day at the pay-as-you-go rate",
+        "The reply gives the official price as $0.010 per follower read, so $6,000 per day",
+        "The reply dates the official price as 2026-10-05",
+        "The reply tells the developer to check X's own pricing page for the current price",
+        "The reply states no other official X API price, tier, or limit as a current fact"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "unmapped-call-stays-unmapped",
+      "prompt": "Migrate these 3 calls to Xquik: GET /2/tweets/counts/recent for our volume chart, GET /2/users/by/username/:username, and GET /2/users/:id/mentions.",
+      "expected_output": "2 mapped endpoints and a plain statement that tweet counts has no Xquik endpoint.",
+      "files": [],
+      "expectations": [
+        "GET /2/users/by/username/:username maps to GET /x/users/{id} at https://xquik.com/api/v1, called with the username",
+        "GET /2/users/:id/mentions maps to GET /x/users/{id}/mentions",
+        "The reply says the tweet counts call has no Xquik endpoint",
+        "The reply does not invent a counts endpoint or path on Xquik",
+        "The reply leaves the developer a choice for the counts call, such as keeping it on the official X API or dropping it"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "data-request-goes-to-other-skill",
+      "prompt": "Use Xquik to grab the 20 latest tweets from @nasa and summarize them for me right here.",
+      "expected_output": "Says this skill writes application code, names the x-twitter-scraper skill for reading X data, and shows no tweets.",
+      "files": [],
+      "expectations": [
+        "The reply says this skill writes application code and does not read X data in the conversation",
+        "The reply names the x-twitter-scraper skill for this request",
+        "The reply does not run or claim to run a request that returns tweets",
+        "The reply contains no tweet text or summary presented as real @nasa content"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "new-integration-timeline-python",
+      "prompt": "New project, no X code yet. I need a Python function that returns the latest tweets an account posted since a given datetime, replies included, capped at 500 tweets. Use Xquik.",
+      "expected_output": "A Python function on the user timeline endpoint with time bounds, bounded paging and the key from the environment.",
+      "files": [],
+      "expectations": [
+        "The code calls GET https://xquik.com/api/v1/x/users/{id}/tweets, not the search endpoint",
+        "The start time is sent as sinceTime",
+        "Replies are included with includeReplies=true",
+        "pageSize is between 1 and 300",
+        "Paging sends next_cursor back as cursor while has_next_page is true",
+        "The function stops at 500 tweets or at a page bound that keeps the read near that cap",
+        "The key is read from the XQUIK_API_KEY environment variable and sent in the x-api-key header",
+        "The reply states the cost ceiling, at 1 credit or $0.00015 per returned tweet",
+        "The code installs no new package, or uses only an HTTP client the reply says is already in the project or the standard library"
+      ]
+    }
+  ]
+}
