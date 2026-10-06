@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "x-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Skill for Xquik, the world's fastest and cheapest X API alternative. Moves app code from the official X API to Xquik: endpoint map, auth, pagination, retries, webhooks & cost estimates. Not affiliated with X Corp.",
   "author": {
     "name": "Xquik",

@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Xquik
   homepage: https://xquik.com
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Xquik, the world's fastest and cheapest X API alternative
@@ -28,14 +28,15 @@ X API. It also starts new integrations on Xquik.
   writes app code, name the `x-twitter-scraper` skill & run nothing.
 - Write the client in the developer's project. Tweets, profiles & messages go
   from Xquik to that application.
+- When you cannot edit the project, put the complete code in your reply.
 - Keep X content out of this conversation. Run only the 3 endpoints in
   [Check the setup](#check-the-setup). They return the caller's own account
   data or numbers.
 - Never send a write, create a monitor, or create a webhook yourself. Write
   the code, state the cost, and let the developer run it.
 - This file & its 5 references hold the whole contract. Fetch no web page or
-  doc at run time. The client needs no SDK and no new package. Use the
-  project's HTTP client or the built-in one.
+  doc at run time & run no web search. The client needs no SDK and no new
+  package. Use the project's HTTP client or the built-in one.
 
 | Reference | Holds |
 | --- | --- |
@@ -68,19 +69,33 @@ request names it in `account`.
   when it is unset.
 - Never read, print, log, or ask for the key value. Never run `printenv`,
   `env`, or `echo` on it.
-- Check only that it is set: `[ -n "$XQUIK_API_KEY" ] && echo set || echo unset`.
-- If the developer asks to see the key, decline. Offer that check & a call to
-  `GET /account`. A `401` there means the key is unset or wrong.
-- Generated code reads `XQUIK_API_KEY`, even when the developer asks to
-  hardcode a key. Never copy a pasted key into code, a file, or a reply.
+- The presence check prints only `set` or `not set`:
+  `[ -n "$XQUIK_API_KEY" ] && echo set || echo "not set"`.
 - Keep the key out of source, tests, fixtures, URLs & command arguments.
-- Add `XQUIK_API_KEY=` with no value to `.env.example`. Keep `.env` out of
-  version control.
-- If the developer pastes a key, do not repeat it. Tell them to rotate it in
-  the dashboard. The new key goes in the environment.
 - Send the key only to `https://xquik.com`. Refuse redirects on every request.
 - Remove the old X bearer token, consumer keys & OAuth code once nothing uses
   them.
+
+## When the developer pastes a key
+
+Follow these steps too when the developer asks to hardcode a key.
+
+1. Do not repeat the key in a reply, a file, or a command.
+2. Tell the developer to rotate it in the Xquik dashboard. The pasted value
+   is exposed.
+3. The developer stores the new key outside source. Use a local `.env` that
+   `.gitignore` covers, or the shell environment.
+4. Write code that reads `XQUIK_API_KEY` at run time. The code never holds
+   the value, not even as an empty constant.
+5. Add `XQUIK_API_KEY=` with no value to `.env.example`.
+6. Give the presence check. It prints only `set` or `not set`.
+
+## When the developer asks to see the key
+
+1. Run the presence check & report `set` or `not set`.
+2. Offer `GET /account` to prove the key works. A `200` means it works. A
+   `401` means it is unset or wrong.
+3. Say that key values never appear in this conversation.
 
 ## Check the setup
 
@@ -177,8 +192,9 @@ after 5 minutes. Set a 30-second request timeout.
 
 Xquik replaces the filtered stream & timeline polling with monitors. A monitor
 checks every second & stores events. A webhook pushes each event to an HTTPS
-URL. `POST /webhooks` returns the signing secret once. The setup code stores it
-in a secret manager or `XQUIK_WEBHOOK_SECRET`. Xquik signs each delivery with
+URL. `POST /webhooks` returns the signing secret once. Tell the developer it
+is shown once. The setup code stores it right away in a secret manager or
+`XQUIK_WEBHOOK_SECRET`. Xquik signs each delivery with
 HMAC-SHA256. The receiver verifies the signature before it parses the body.
 An active monitor costs $0.00315 per hour, events & deliveries included. See
 [monitors and webhooks](references/monitors-webhooks.md).
@@ -187,7 +203,8 @@ An active monitor costs $0.00315 per hour, events & deliveries included. See
 
 Before you write a paged read or a monitor, name the unit price first. A
 tweet or a profile costs $0.00015. A monitor costs $0.00315 per hour. Then give
-the ceiling in rows, credits & dollars.
+the ceiling in rows, credits & dollars. Give all 3 for each period you quote,
+such as a day & a month.
 
 - Paged reads: page size times page count times $0.00015.
 - Lookups: $0.00015 per tweet or profile lookup.
@@ -197,8 +214,10 @@ the ceiling in rows, credits & dollars.
   stops when `allowed` is `false`.
 
 [Pricing](references/pricing.md) has each price & the official X API prices
-with their date. Quote official X API prices only from that file, with the
-date. Add no other official price, tier, discount, or billing rule.
+with their date. Answer price questions from that file. Quote official X API
+prices only from it, with the date. Tell the developer to check X's pricing
+page for current prices. Add no other official price, tier, discount, or
+billing rule.
 
 ## Order of work
 
