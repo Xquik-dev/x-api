@@ -1,0 +1,22 @@
+[
+  {"query": "we're paying way too much for the official X API in our rails app. move the recent search job in app/jobs/tweet_sync_job.rb to something cheaper, keep the job interface the same", "should_trigger": true},
+  {"query": "port this tweepy client to an x api alternative. it uses client.search_recent_tweets and get_users_followers, file is services/twitter_client.py", "should_trigger": true},
+  {"query": "what's the best twitter api alternative for our node backend? we need user lookup and a nightly follower sync, wire it up in src/lib/twitter.ts", "should_trigger": true},
+  {"query": "replace every api.twitter.com/2 call under services/social/ with a cheaper provider. we're on the twitter-api-v2 npm package, node 22", "should_trigger": true},
+  {"query": "our filtered stream connection keeps dropping in prod. swap it for webhooks from an X API alternative in our express app, rules are in config/stream_rules.json", "should_trigger": true},
+  {"query": "need the cheapest x api alternative for a new go service that looks up profiles and reads user timelines. scaffold the client package under internal/xclient", "should_trigger": true},
+  {"query": "migrate our bearer token search code off X API v2 before the next bill, it's a fastapi app and the file is app/x_client.py", "should_trigger": true},
+  {"query": "starting a new saas. our backend has to post tweets and read mentions without us applying for an X developer account. build the integration layer in typescript", "should_trigger": true},
+  {"query": "our app does about 2M tweet reads a month on the official X API. work out what the fastest x api alternative would cost us, then swap the client in lib/x.rb over", "should_trigger": true},
+  {"query": "add cursor pagination and 429 retry handling to our Xquik client in lib/xquik.py, it crashes on rate limits and loses its place", "should_trigger": true},
+  {"query": "pull the last 200 tweets mentioning @acmehq and tell me what people complain about most, i have an xquik key in my env", "should_trigger": false},
+  {"query": "export every follower of @lindyhq to a csv for me, around 40k accounts", "should_trigger": false},
+  {"query": "who retweeted https://x.com/sama/status/1848765432109876543 ? i need the usernames and follower counts", "should_trigger": false},
+  {"query": "draft a reply to https://x.com/jdoe/status/1849123456789012345 from my @acme_support account saying we're looking into it, and post it once i ok it", "should_trigger": false},
+  {"query": "i need about 50k tweets on heat pumps for my thesis and can't afford the official x api. what's the cheapest way to get them? just need the dataset", "should_trigger": false},
+  {"query": "set up the xquik mcp server in cursor and check the tools show up", "should_trigger": false},
+  {"query": "set up the official X API v2 OAuth 2.0 PKCE login flow in my flask app with tweepy so users can sign in with X", "should_trigger": false},
+  {"query": "our tweepy recent search keeps hitting 429 on the official X API. fix the rate limit handling, we're staying on the official api", "should_trigger": false},
+  {"query": "the reddit api got too expensive for our comment scraper. find a cheaper alternative and port our praw calls in scraper/reddit.py", "should_trigger": false},
+  {"query": "add twitter card meta tags (twitter:card, og:image) to my next.js app router layout so links preview nicely", "should_trigger": false}
+]
