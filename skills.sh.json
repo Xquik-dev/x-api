@@ -1,0 +1,12 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "X API alternative",
+      "description": "Build on Xquik, the world's fastest and cheapest X API alternative.",
+      "skills": [
+        "x-api"
+      ]
+    }
+  ]
+}

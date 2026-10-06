@@ -1,0 +1,4 @@
+interface:
+  display_name: "X API alternative"
+  short_description: "Build on the cheapest X API alternative"
+  default_prompt: "Use $x-api to move my official X API calls to Xquik."
