@@ -53,7 +53,7 @@ set it in your shell:
 export XQUIK_API_KEY='<your key>'
 ```
 
-## What to ask your agent
+## Tasks to give your agent
 
 - "Move our recent search job from the official X API to Xquik."
 - "Port this tweepy client to an X API alternative."
