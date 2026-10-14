@@ -18,9 +18,9 @@ webhook.
 
 | Official X API v2 | Xquik |
 | --- | --- |
-| A rule on `POST /2/tweets/search/stream/rules` | A keyword monitor: `POST /monitors/keywords` |
-| The held connection on `GET /2/tweets/search/stream` | A webhook: `POST /webhooks`, or polling `GET /events` |
-| Polling `GET /2/users/:id/tweets` for new tweets | An account monitor: `POST /monitors` |
+| A rule on `POST /2/tweets/search/stream/rules` | A keyword monitor with `POST /monitors/keywords` |
+| The held connection on `GET /2/tweets/search/stream` | A webhook with `POST /webhooks`, or polling `GET /events` |
+| Polling `GET /2/users/:id/tweets` for new tweets | An account monitor with `POST /monitors` |
 | Reconnect & backfill code | Remove it. Xquik stores events & retries deliveries |
 
 ## Cost

@@ -52,7 +52,7 @@ State the ceiling before the code runs. Give rows, credits & dollars.
 | Writes | Calls times the write price above |
 | Monitors | 21 credits per monitor per hour, so 504 per day |
 
-Examples at the pay-as-you-go rate:
+These examples use the pay-as-you-go rate.
 
 - 10 pages of 100 tweets are at most 1,000 credits, so $0.15.
 - 50 pages of 200 followers are at most 10,000 credits, so $1.50.
@@ -80,11 +80,11 @@ X's pricing page listed these pay-per-use prices on 2026-10-05. The page is
 
 | X's unit name | X's price on 2026-10-05 | Xquik unit | Xquik price |
 | --- | --- | --- | --- |
-| Posts: Read | $0.005 per resource | 1 tweet read | $0.00015 |
-| User: Read | $0.010 per resource | 1 profile read | $0.00015 |
-| Following/Followers: Read | $0.010 per resource | 1 follower or following profile | $0.00015 |
-| Post: Create | $0.015 per request | 1 text tweet created | $0.0045 |
-| Post: Create (with URL) | $0.200 per request | 1 text tweet created | $0.0045 |
+| `Posts: Read` | $0.005 per resource | 1 tweet read | $0.00015 |
+| `User: Read` | $0.010 per resource | 1 profile read | $0.00015 |
+| `Following/Followers: Read` | $0.010 per resource | 1 follower or following profile | $0.00015 |
+| `Post: Create` | $0.015 per request | 1 text tweet created | $0.0045 |
+| `Post: Create` with a URL | $0.200 per request | 1 text tweet created | $0.0045 |
 | Trends | $0.010 per request | 1 trends call | $0.00045 |
 
 On that date a tweet read cost 33 times less on Xquik. A follower read cost
