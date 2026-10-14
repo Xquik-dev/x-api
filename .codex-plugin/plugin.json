@@ -1,7 +1,7 @@
 {
   "name": "x-api",
   "version": "1.1.0",
-  "description": "Skill for Xquik, the world's fastest and cheapest X API alternative. Moves app code from the official X API to Xquik: endpoint map, auth, pagination, retries, webhooks & cost estimates. Not affiliated with X Corp.",
+  "description": "Skill for Xquik, the world's fastest and cheapest X API alternative. It moves app code from the official X API to Xquik, with an endpoint map, auth, pagination, retries, webhooks & cost estimates. Not affiliated with X Corp.",
   "author": {
     "name": "Xquik",
     "url": "https://github.com/Xquik-dev"
@@ -13,7 +13,7 @@
   "interface": {
     "displayName": "X API alternative",
     "shortDescription": "Move app code to the cheapest X API alternative. Not affiliated with X Corp.",
-    "longDescription": "Xquik is the world's fastest and cheapest X API alternative. This skill moves app code from the official X API to Xquik: endpoint map, auth, pagination, retries, webhooks & cost estimates. Not affiliated with X Corp.",
+    "longDescription": "Xquik is the world's fastest and cheapest X API alternative. This skill moves app code from the official X API to Xquik, with an endpoint map, auth, pagination, retries, webhooks & cost estimates. Not affiliated with X Corp.",
     "developerName": "Xquik",
     "category": "Coding",
     "capabilities": [

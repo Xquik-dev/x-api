@@ -1,4 +1,4 @@
-# Endpoint map: official X API v2 to Xquik
+# Endpoint map from the official X API v2 to Xquik
 
 Every Xquik endpoint starts at `https://xquik.com/api/v1`.
 
@@ -41,16 +41,21 @@ A tweets page holds `tweets`, `has_next_page` & `next_cursor`.
 Search filters are named query parameters. Send only the ones the application
 needs.
 
-- Authors: `fromUser`, `toUser`, `mentioning`, `verifiedOnly`
-- Text: `exactPhrase`, `anyWords`, `excludeWords`, `hashtags`, `cashtags`, `url`
-- Time: `sinceTime` (inclusive) & `untilTime` (exclusive), both ISO 8601
-- Language: `language`, such as `en`
-- Media: `mediaType` (`images`, `videos`, `gifs`, `media`, `links`, `none`)
-- Engagement: `minLikes`, `minRetweets`, `minReplies`, `minQuotes`, `minViews`
-- Tweet types: `replies`, `retweets`, `quotes`, each `include`, `exclude`, or `only`
+- Author filters are `fromUser`, `toUser`, `mentioning` & `verifiedOnly`.
+- Text filters are `exactPhrase`, `anyWords`, `excludeWords`, `hashtags`,
+  `cashtags` & `url`.
+- Time filters are `sinceTime` (inclusive) & `untilTime` (exclusive). Both take
+  ISO 8601.
+- The language filter is `language`, such as `en`.
+- The media filter is `mediaType`. It takes `images`, `videos`, `gifs`,
+  `media`, `links`, or `none`.
+- Engagement filters are `minLikes`, `minRetweets`, `minReplies`, `minQuotes`
+  & `minViews`.
+- Tweet type filters are `replies`, `retweets` & `quotes`. Each takes
+  `include`, `exclude`, or `only`.
 
 Words, quoted phrases, `-word` & `from:` stay in `q`. Replace these official
-X API v2 operators with named filters:
+X API v2 operators with named filters.
 
 | Official X API v2 operator | Xquik filter |
 | --- | --- |
@@ -75,9 +80,9 @@ A users page holds `users`, `has_next_page` & `next_cursor`.
 | `GET /2/users/:id/followers` | `GET /x/users/{id}/followers` | `pageSize` (1 to 300, default 200), `cursor`, profile filters | Users page |
 | `GET /2/users/:id/following` | `GET /x/users/{id}/following` | Same as followers | Users page |
 
-Profile filters apply before billing: `minFollowers`, `maxFollowers`,
-`minFollowing`, `maxFollowing`, `minStatuses`, `minAccountAgeDays`,
-`verifiedOnly`, `bioContains`, `locationContains`.
+Profile filters apply before billing. They are `minFollowers`,
+`maxFollowers`, `minFollowing`, `maxFollowing`, `minStatuses`,
+`minAccountAgeDays`, `verifiedOnly`, `bioContains` & `locationContains`.
 
 ## Lists, Spaces & trends
 
@@ -184,7 +189,7 @@ with a default.
 
 ## Calls with no Xquik endpoint
 
-These official calls have no Xquik endpoint:
+These official calls have no Xquik endpoint.
 
 - Tweet counts, such as `GET /2/tweets/counts/recent`
 - Mutes & blocks

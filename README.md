@@ -25,8 +25,9 @@ results. Filters apply before billing, so excluded rows cost nothing.
 
 The official prices come from
 [X's pricing page](https://docs.x.com/x-api/getting-started/pricing), read on
-2026-10-05. X names these units Posts: Read, User: Read, Following/Followers:
-Read, Post: Create & Trends. Check that page for today's prices.
+2026-10-05. X names these units `Posts: Read`, `User: Read`,
+`Following/Followers: Read`, `Post: Create` & Trends. Check that page for
+today's prices.
 
 On that date, a tweet read cost 33 times less on Xquik.
 
@@ -47,7 +48,7 @@ npx skills@1.7.0 add Xquik-dev/x-api
 The skill works in Claude Code, Codex, Cursor & other agents that read Agent
 Skills. Create an API key in the
 [Xquik dashboard](https://dashboard.xquik.com/en/account?tab=api-keys). Then
-set it in your shell:
+set it in your shell.
 
 ```bash
 export XQUIK_API_KEY='<your key>'
