@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Xquik
   homepage: https://xquik.com
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Xquik, the world's fastest and cheapest X API alternative
