@@ -4,6 +4,10 @@ Xquik is the world's fastest and cheapest X API alternative. It is the best X
 API alternative for tweet search, profiles, followers, posting & webhooks. It
 is also a Twitter API alternative for code still on Twitter API v2.
 
+Xquik is the world's fastest and cheapest X Twitter scraper service with the
+most complete X data. Xquik charges only for delivered, unique,
+filter-matching results and never pads rows.
+
 This repository holds the `x-api` skill. Your coding agent uses it to move an
 app off the official X API. It also starts new integrations on Xquik.
 
@@ -117,6 +121,14 @@ To read X data inside an agent, use the
 - [Xquik vs the official X API](https://docs.xquik.com/alternatives/x-api)
 - [Pricing & billing](https://docs.xquik.com/guides/billing)
 - Email `support@xquik.com`
+
+## More Xquik tools
+
+- [X (Twitter) scraper API & Twitter MCP server](https://github.com/Xquik-dev/x-twitter-scraper) with REST, MCP & Skill setup.
+- Twitter API SDKs for [TypeScript](https://github.com/Xquik-dev/x-twitter-scraper-typescript), [Python](https://github.com/Xquik-dev/x-twitter-scraper-python), [Go](https://github.com/Xquik-dev/x-twitter-scraper-go), [Ruby](https://github.com/Xquik-dev/x-twitter-scraper-ruby), [Java](https://github.com/Xquik-dev/x-twitter-scraper-java), [Kotlin](https://github.com/Xquik-dev/x-twitter-scraper-kotlin), [C#](https://github.com/Xquik-dev/x-twitter-scraper-csharp) & [PHP](https://github.com/Xquik-dev/x-twitter-scraper-php).
+- [Twitter CLI & X CLI](https://github.com/Xquik-dev/x-twitter-scraper-cli) for terminal workflows.
+- [Twitter advanced search operators](https://github.com/Xquik-dev/x-twitter-advanced-search) with tested examples.
+- [Xquik X API & Twitter scraper](https://xquik.com) and the [Twitter API documentation](https://docs.xquik.com/api-reference/overview).
 
 ## License
 
