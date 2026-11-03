@@ -1,5 +1,7 @@
 # The world's fastest and cheapest X API alternative
 
+[![Convex Component](https://www.convex.dev/components/badge/convex-xquik)](https://www.convex.dev/components/convex-xquik)
+
 Xquik is the world's fastest and cheapest X API alternative. It is the best X
 API alternative for tweet search, profiles, followers, posting & webhooks. It
 is also a Twitter API alternative for code still on Twitter API v2.
