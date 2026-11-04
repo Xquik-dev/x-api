@@ -55,7 +55,7 @@ X API. It also starts new integrations on Xquik.
 | Key source | `XQUIK_API_KEY` environment variable |
 | Bodies | JSON |
 | IDs | Strings. A user endpoint takes a user ID or a username |
-| Rate limits | 500 reads per second, 120 writes per minute, 60 deletes per minute |
+| Rate limits | 500 reads per second, 6,000 changes per minute, 120 X actions per minute |
 
 Put the base URL in the client. Callers pass only the path after `/api/v1`.
 
