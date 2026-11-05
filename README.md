@@ -16,6 +16,53 @@ app off the official X API. It also starts new integrations on Xquik.
 > Xquik is an independent third-party service. Not affiliated with X Corp.
 > "Twitter" and "X" are trademarks of X Corp.
 
+## Install the X API alternative skill
+
+```bash
+npx skills@1.7.0 add Xquik-dev/x-api
+```
+
+The skill works in Claude Code, Codex, Cursor & other agents that read Agent
+Skills. Create an API key in the
+[Xquik dashboard](https://dashboard.xquik.com/en/account?tab=api-keys). Then
+set it in your shell.
+
+```bash
+export XQUIK_API_KEY='<your key>'
+```
+
+## Pay per use X API pricing for tweet search
+
+Each tweet costs $0.00015, so this call for 10 tweets costs $0.0015.
+
+```bash
+curl -s "https://xquik.com/api/v1/x/tweets/search?q=from:elonmusk&limit=10" \
+  -H "x-api-key: $XQUIK_API_KEY"
+```
+
+## Cut Twitter API cost when you leave tweepy
+
+This tweepy call reads from the official X API at $0.005 per tweet.
+
+```python
+client.search_recent_tweets(query="from:elonmusk", max_results=10)
+```
+
+The skill rewrites it as an Xquik call at $0.00015 per tweet.
+
+```python
+import os
+import requests
+
+response = requests.get(
+    "https://xquik.com/api/v1/x/tweets/search",
+    params={"q": "from:elonmusk", "limit": 10},
+    headers={"x-api-key": os.environ["XQUIK_API_KEY"]},
+    timeout=30,
+)
+tweets = response.json()["tweets"]
+```
+
 <!-- trust:start -->
 
 ## Trust & usage
@@ -74,21 +121,6 @@ On that date, a tweet read cost 33 times less on Xquik.
 - Monitors check every second & push signed webhooks.
 - Tweets arrive with the author inline, so you drop `expansions`.
 - Search accepts `query`, `max_results` & `sort_order` as aliases.
-
-## Install the skill
-
-```bash
-npx skills@1.7.0 add Xquik-dev/x-api
-```
-
-The skill works in Claude Code, Codex, Cursor & other agents that read Agent
-Skills. Create an API key in the
-[Xquik dashboard](https://dashboard.xquik.com/en/account?tab=api-keys). Then
-set it in your shell.
-
-```bash
-export XQUIK_API_KEY='<your key>'
-```
 
 ## Tasks to give your agent
 
@@ -158,8 +190,10 @@ To read X data inside an agent, use the
 
 - [X (Twitter) scraper API & Twitter MCP server](https://github.com/Xquik-dev/x-twitter-scraper) with REST, MCP & Skill setup.
 - Twitter API SDKs for [TypeScript](https://github.com/Xquik-dev/x-twitter-scraper-typescript), [Python](https://github.com/Xquik-dev/x-twitter-scraper-python), [Go](https://github.com/Xquik-dev/x-twitter-scraper-go), [Ruby](https://github.com/Xquik-dev/x-twitter-scraper-ruby), [Java](https://github.com/Xquik-dev/x-twitter-scraper-java), [Kotlin](https://github.com/Xquik-dev/x-twitter-scraper-kotlin), [C#](https://github.com/Xquik-dev/x-twitter-scraper-csharp) & [PHP](https://github.com/Xquik-dev/x-twitter-scraper-php).
-- [Twitter CLI & X CLI](https://github.com/Xquik-dev/x-twitter-scraper-cli) for terminal workflows.
-- [Twitter advanced search operators](https://github.com/Xquik-dev/x-twitter-advanced-search) with tested examples.
+- [Twitter CLI & X CLI](https://github.com/Xquik-dev/x-twitter-scraper-cli), the [X API alternative skill](https://github.com/Xquik-dev/x-api) and [Twitter advanced search operators](https://github.com/Xquik-dev/x-twitter-advanced-search) with tested examples.
+- Twitter agent plugins for [OpenClaw](https://github.com/Xquik-dev/tweetclaw) & [Hermes Agent](https://github.com/Xquik-dev/hermes-tweet), and the [Twitter API documentation source](https://github.com/Xquik-dev/xquik-docs).
+- Twitter integrations for [n8n](https://github.com/Xquik-dev/n8n-nodes-xquik), [Prefect](https://github.com/Xquik-dev/prefect-xquik), [Haystack](https://github.com/Xquik-dev/xquik-haystack), [Paperclip](https://github.com/Xquik-dev/paperclip-plugin-xquik), [Terraform](https://github.com/Xquik-dev/terraform-provider-x-twitter-scraper), [Convex](https://github.com/Xquik-dev/xquik-convex), [Supabase](https://github.com/Xquik-dev/xquik-supabase) & [Strapi](https://github.com/Xquik-dev/strapi-plugin-xquik).
+- Twitter MCP for [AI agents](https://github.com/Xquik-dev/xquik-mcp), [VS Code](https://github.com/Xquik-dev/xquik-vscode) & [Raycast](https://github.com/Xquik-dev/xquik-raycast).
 - [Xquik X API & Twitter scraper](https://xquik.com) and the [Twitter API documentation](https://docs.xquik.com/api-reference/overview).
 
 ## License
