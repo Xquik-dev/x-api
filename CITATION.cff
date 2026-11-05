@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: If you use Xquik X API alternative agent skill, cite it using this metadata.
+title: Xquik X API alternative agent skill
+type: software
+abstract: >-
+  X API alternative with pay per use pricing for tweet search, profiles &
+  posts. An agent skill that moves app code from the official X API to Xquik
+  and cuts Twitter API cost.
+authors:
+  - name: Xquik
+    website: https://xquik.com
+url: https://github.com/Xquik-dev/x-api
+repository-code: https://github.com/Xquik-dev/x-api
+license: MIT
+keywords:
+  - Xquik
+  - X API alternative
+  - X API pricing
+  - pay per use
+  - Twitter API cost
+  - agent skill
+  - tweepy
