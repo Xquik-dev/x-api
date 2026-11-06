@@ -26,7 +26,7 @@ Dollar prices use the pay-as-you-go rate.
 | A tweet or a reply, text only | 30 per call | $0.0045 per call |
 | Media on a tweet | 2 per started MB | $0.0003 per started MB |
 | A like, repost, follow, DM, delete, or media upload | 10 per call | $0.0015 per call |
-| An active monitor | 21 per hour | $0.00315 per hour |
+| An active monitor | 30 per hour | $0.0045 per hour |
 | Estimates, stored events, webhook management & account status | 0 | Free |
 
 ## Plans
@@ -50,13 +50,13 @@ State the ceiling before the code runs. Give rows, credits & dollars.
 | A paged read | Page size times page count, in rows. Each row costs 1 credit |
 | Lookups | 1 credit per call |
 | Writes | Calls times the write price above |
-| Monitors | 21 credits per monitor per hour, so 504 per day |
+| Monitors | 30 credits per monitor per hour, so 720 per day |
 
 These examples use the pay-as-you-go rate.
 
 - 10 pages of 100 tweets are at most 1,000 credits, so $0.15.
 - 50 pages of 200 followers are at most 10,000 credits, so $1.50.
-- 3 monitors for 30 days are 45,360 credits, so about $6.80.
+- 3 monitors for 30 days are 64,800 credits, so about $9.72.
 
 A bulk extraction job has its own free estimate. The code calls it first.
 
