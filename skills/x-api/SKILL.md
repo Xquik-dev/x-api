@@ -196,13 +196,13 @@ URL. `POST /webhooks` returns the signing secret once. Tell the developer it
 is shown once. The setup code stores it right away in a secret manager or
 `XQUIK_WEBHOOK_SECRET`. Xquik signs each delivery with
 HMAC-SHA256. The receiver verifies the signature before it parses the body.
-An active monitor costs $0.00315 per hour, events & deliveries included. See
+An active monitor costs $0.0045 per hour, events & deliveries included. See
 [monitors and webhooks](references/monitors-webhooks.md).
 
 ## Estimate cost
 
 Before you write a paged read or a monitor, name the unit price first. A
-tweet or a profile costs $0.00015. A monitor costs $0.00315 per hour. Then give
+tweet or a profile costs $0.00015. A monitor costs $0.0045 per hour. Then give
 the ceiling in rows, credits & dollars. Give all 3 for each period you quote,
 such as a day & a month.
 
@@ -210,7 +210,7 @@ such as a day & a month.
 - Lookups cost $0.00015 per tweet or profile lookup.
 - Writes cost $0.0045 per text tweet. A like, repost, follow, or DM costs
   $0.0015.
-- Monitors cost $0.00315 per active monitor per hour. The charge stops when
+- Monitors cost $0.0045 per active monitor per hour. The charge stops when
   the developer pauses or deletes the monitor.
 - For bulk extraction jobs, the code calls `POST /extractions/estimate` first
   & stops when `allowed` is `false`.

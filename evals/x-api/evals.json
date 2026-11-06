@@ -130,7 +130,7 @@
         "The receiver rejects a timestamp more than 5 minutes old",
         "The receiver rejects a repeated nonce",
         "The signature comparison is constant time, such as timingSafeEqual",
-        "The reply states the cost as 21 credits or $0.00315 per active monitor per hour",
+        "The reply states the cost as 30 credits or $0.0045 per active monitor per hour",
         "The reply gives an hourly or daily total that matches the number of monitors it sets up",
         "The reply gives the setup as code or requests for the developer to run and does not claim a monitor or webhook was already created",
         "The reply shows how to pause or delete a monitor"

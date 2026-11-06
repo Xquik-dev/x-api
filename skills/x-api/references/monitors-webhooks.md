@@ -25,10 +25,10 @@ webhook.
 
 ## Cost
 
-- An active monitor costs 21 credits per hour, so $0.00315.
+- An active monitor costs 30 credits per hour, so $0.0045.
 - That price includes its events & webhook deliveries.
-- Creating a monitor needs 22 available credits.
-- An account monitor also costs 1 credit for the username lookup.
+- Creating a monitor needs 30 available credits.
+- The username lookup of an account monitor is free.
 - Reading stored events & managing webhooks cost nothing.
 - A paused or deleted monitor costs nothing.
 
