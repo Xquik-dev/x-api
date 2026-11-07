@@ -1,6 +1,6 @@
-# The World's Fastest and Cheapest X API Alternative
+# X API Pricing & X API Alternative by Xquik
 
-Use this X API alternative skill by Xquik to leave the official X API.
+Use this X API alternative skill by Xquik to replace official X API pricing.
 It is also a Twitter API alternative for code still on Twitter API v2.
 
 Xquik is the world's fastest and cheapest X Twitter scraper service with the most complete X data.
