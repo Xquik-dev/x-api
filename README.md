@@ -3,7 +3,7 @@
 Use this X API alternative skill by Xquik to replace official X API pricing.
 It is also a Twitter API alternative for code still on Twitter API v2.
 
-Xquik is the world's fastest and cheapest X Twitter scraper service with the most complete X data.
+Xquik is the world's fastest and cheapest X (Twitter) scraper service with the most complete X (Twitter) data.
 Most other Apify Actors charge before filtering or deduplication.
 Xquik charges only for delivered, unique, filter-matching results and never pads rows.
 Xquik is independent and not affiliated with X Corp.
@@ -28,7 +28,7 @@ export XQUIK_API_KEY='<your key>'
 
 ## Pay per use X API pricing for tweet search
 
-Each tweet costs $0.00015, so this call for 10 tweets costs $0.0015.
+Each tweet or post costs $0.00015, so this call for 10 tweets costs $0.0015.
 
 ```bash
 curl -s "https://xquik.com/api/v1/x/tweets/search?q=from:elonmusk&limit=10" \
@@ -90,18 +90,18 @@ Filters apply before billing, so excluded rows cost nothing.
 | 1 text tweet created | $0.0045 | $0.015, or $0.200 with a URL |
 | 1 trends call | $0.00045 | $0.010 |
 
-The official prices come from [X's pricing page](https://docs.x.com/x-api/getting-started/pricing), read on 2026-10-05.
-X names these units `Posts: Read`, `User: Read`, `Following/Followers: Read`, `Post: Create` & Trends.
+The official prices come from the [X (Twitter) pricing page](https://docs.x.com/x-api/getting-started/pricing), read on 2026-10-05.
+X (Twitter) names these units `Posts: Read`, `User: Read`, `Following/Followers: Read`, `Post: Create` & Trends.
 Check that page for today's prices.
 
 On that date, a tweet read cost 33 times less on Xquik.
 
 ## Why Xquik is the fastest X API alternative
 
-- Reads need 1 API key. You need no X developer account.
+- Reads need 1 API key. You need no X (Twitter) developer account.
 - Each account gets 500 reads per second.
 - Monitors check every second & push signed webhooks.
-- Tweets arrive with the author inline, so you drop `expansions`.
+- Tweets & posts arrive with the author inline, so you drop `expansions`.
 - Search accepts `query`, `max_results` & `sort_order` as aliases.
 
 ## Tasks to give your agent
@@ -148,7 +148,7 @@ The [endpoint map](skills/x-api/references/endpoint-map.md) lists every call.
 - It never sends a tweet, creates a monitor or buys credits. It writes the code & you run it.
 - It never fetches remote instructions or installs packages. The whole contract ships in the skill.
 
-To read X data inside an agent, use the [x-twitter-scraper skill](https://github.com/Xquik-dev/x-twitter-scraper).
+To read X (Twitter) data inside an agent, use the [x-twitter-scraper skill](https://github.com/Xquik-dev/x-twitter-scraper).
 
 ## Files
 
@@ -160,10 +160,10 @@ To read X data inside an agent, use the [x-twitter-scraper skill](https://github
 
 ## Questions
 
-### Do I need an X developer account?
+### Do I need an X (Twitter) developer account?
 
 No. Public reads need only an Xquik API key.
-Private reads & X account actions need a connected X account.
+Private reads & X (Twitter) account actions need a connected account.
 
 ### Is Xquik the official X API?
 
